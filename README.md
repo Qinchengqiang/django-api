@@ -12,22 +12,6 @@
 - An Address object should have the following fields: `number (integer)`, `street (string)`, `city (string)`, `state (GraphQL enum)`.
 
 
-The following query will be used to validate your implementation:
-```
-query {
-  person {
-    email
-    name
-    address {
-      number
-      street
-      city
-      state
-    }
-  }
-}
-```
-
 
 ## Table of Contents
 
@@ -45,15 +29,81 @@ $ mkdir myApi
 
 $ cd myApi
 
+$ git clone https://github.com/Qinchengqiang/django-api.git
 
+$ virtualenv env
 
+$ source env/bin/activate
 
-                                       
-$ yarn start
+(env) $ cd django-api
+
+(env) $ pip3 install -r requirements.txt
+
+(env) $ ./manage.py loaddata data.json
+
+(env) $ python3 manage.py runserver
 ```
-the client will run at http://localhost:3000/
+Starting development server at http://127.0.0.1:8000/
+
 
 ## API
+
+go to http://127.0.0.1:8000/graphql
+
+The following query will be used to validate your implementation:
+```
+query {
+  person {
+    email
+    name
+    address {
+      number
+      street
+      city
+      state
+    }
+  }
+}
+```
+then will get the result:
+```
+{
+  "data": {
+    "person": [
+      {
+        "email": "ah@gmail.com",
+        "name": "A.H",
+        "address": {
+          "number": 12,
+          "street": "Gold St",
+          "city": "Sydney",
+          "state": "NSW"
+        }
+      },
+      {
+        "email": "bk@gmail.com",
+        "name": "B.K",
+        "address": {
+          "number": 20,
+          "street": "Queen St",
+          "city": "Sydney",
+          "state": "NSW"
+        }
+      },
+      {
+        "email": "cl@gmail.com",
+        "name": "C.L",
+        "address": {
+          "number": 101,
+          "street": "King St",
+          "city": "Sydney",
+          "state": "NSW"
+        }
+      }
+    ]
+  }
+}
+```
 
 ## Github
 
